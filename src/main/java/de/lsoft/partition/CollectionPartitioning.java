@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by Lars on 29.03.2017.
+ * Collection Partitioning
+ *
+ * @param <T> Objects in Collection
  */
 public class CollectionPartitioning<T> extends Partitioning<List<T>> {
 
@@ -19,7 +21,7 @@ public class CollectionPartitioning<T> extends Partitioning<List<T>> {
     protected List<T> invoke(List<T> objects, Range range) {
         List<T> partitionedObjects = new ArrayList<>();
         if (range != null) {
-            for (int i = range.getLowerEndpoint() - 1; i < range.getUpperEndpoint(); i++) {
+            for (int i = range.lowerEndpoint() - 1; i < range.upperEndpoint(); i++) {
                 partitionedObjects.add(objects.get(i));
             }
         }
@@ -31,14 +33,23 @@ public class CollectionPartitioning<T> extends Partitioning<List<T>> {
         return objects.size();
     }
 
+    /**
+     * Creates a new CollectionPartitioning.
+     */
     public static <T> CollectionPartitioning<T> forObjects(List<T> objects) {
         return new CollectionPartitioning<>(objects);
     }
 
+    /**
+     * Creates a new CollectionPartitioning. Partitioning based on natural order.
+     */
     public static <T> CollectionPartitioning<T> forObjects(Collection<T> objects) {
         return new CollectionPartitioning<>(objects.stream().sorted().collect(Collectors.toList()));
     }
 
+    /**
+     * Creates a new CollectionPartitioning. Partitioning based on the given comparator.
+     */
     public static <T> CollectionPartitioning<T> forObjects(Collection<T> objects, Comparator<T> comparator) {
         return new CollectionPartitioning<>(objects.stream().sorted(comparator).collect(Collectors.toList()));
     }

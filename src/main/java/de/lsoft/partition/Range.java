@@ -9,15 +9,19 @@ class Range {
     private final int upperEndpoint;
 
     Range(int lowerEndpoint, int upperEndpoint) {
+        if (lowerEndpoint > upperEndpoint) {
+            throw new IllegalArgumentException("lower endpoint must be lower than upper endpoint.");
+        }
+
         this.lowerEndpoint = lowerEndpoint;
         this.upperEndpoint = upperEndpoint;
     }
 
-    int getLowerEndpoint() {
+    int lowerEndpoint() {
         return lowerEndpoint;
     }
 
-    int getUpperEndpoint() {
+    int upperEndpoint() {
         return upperEndpoint;
     }
 }

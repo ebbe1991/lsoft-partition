@@ -11,25 +11,33 @@ public class Partition implements Serializable {
     private final int totalParts;
 
     public Partition(Integer part, Integer totalParts) {
-        if (part > totalParts)
-            throw new IllegalArgumentException();
-        if (part <= 0)
-            throw new IllegalArgumentException();
-        if (totalParts <= 0)
-            throw new IllegalArgumentException();
-
+        if (part > totalParts) {
+            throw new IllegalArgumentException("total parts must be greater or equal than the part");
+        }
+        if (part <= 0) {
+            throw new IllegalArgumentException("part muss be greater 0");
+        }
         this.part = part;
         this.totalParts = totalParts;
     }
 
+    /**
+     * @return the part as number
+     */
     public int getPart() {
         return part;
     }
 
+    /**
+     * @return count of all parts
+     */
     public int getTotalParts() {
         return totalParts;
     }
 
+    /**
+     * @return true, if the partition is a real partition (so total parts is greater than one)
+     */
     public boolean isPartitioned() {
         return getTotalParts() > 1;
     }

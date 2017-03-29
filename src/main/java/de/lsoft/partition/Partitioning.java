@@ -1,8 +1,8 @@
 package de.lsoft.partition;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+
+import static java.util.stream.Collectors.toSet;
 
 /**
  * Abstract Partitioning-Object.
@@ -12,11 +12,12 @@ import java.util.Optional;
  */
 public abstract class Partitioning<T> {
 
-    private Partition[] partitions;
+    private Set<Partition> partitions;
     private T objects;
 
     protected Partitioning(T objects) {
         this.objects = objects;
+        this.partitions = new HashSet<>();
     }
 
     /**
@@ -26,7 +27,7 @@ public abstract class Partitioning<T> {
      * @return Partition-Builder
      */
     public Partitioning<T> withPartitions(Partition... partitions) {
-        this.partitions = partitions;
+        this.partitions.addAll(Arrays.asList(partitions));
         return this;
     }
 
@@ -39,8 +40,11 @@ public abstract class Partitioning<T> {
         if (objects == null) {
             throw new IllegalStateException("objects not set.");
         }
-        if (partitions == null || partitions.length == 0) {
+        if (partitions.size() == 0) {
             throw new IllegalStateException("partitions not set or empty.");
+        }
+        if (partitions.stream().map(Partition::getTotalParts).collect(toSet()).size() != 1) {
+            throw new IllegalStateException("different total parts in partitions.");
         }
 
         Map<Integer, T> map = new HashMap<>();
@@ -60,11 +64,11 @@ public abstract class Partitioning<T> {
      * @return the objects of the partition
      */
     public T invokeSinglePartition() {
-        if (partitions.length != 1) {
+        if (partitions.size() != 1) {
             throw new IllegalStateException();
         }
 
-        Partition partition = partitions[0];
+        Partition partition = partitions.iterator().next();
         if (!partition.isPartitioned()) {
             return objects;
         }
