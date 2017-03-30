@@ -7,7 +7,7 @@ First of all you have objects to be partitioned, for example a list:
         animals.add("Cat");
         animals.add("Dog");
 
-Now you need parts to partitioning :-) - for exampe two parts:
+Now you need some partitions :-):
 
         new Partition(1, 2) // Partition 1 of 2 total parts
         new Partition(1, 2) // Partition 2 of 2 total parts
