@@ -3,12 +3,12 @@ package de.lsoft.partition;
 /**
  * Simple Closed-Range-Object with lower and upped endpoints.
  */
-class Range {
+public class Range {
 
     private final int lowerEndpoint;
     private final int upperEndpoint;
 
-    Range(int lowerEndpoint, int upperEndpoint) {
+    public Range(int lowerEndpoint, int upperEndpoint) {
         if (lowerEndpoint > upperEndpoint) {
             throw new IllegalArgumentException("lower endpoint must be lower than upper endpoint.");
         }
@@ -17,11 +17,11 @@ class Range {
         this.upperEndpoint = upperEndpoint;
     }
 
-    int lowerEndpoint() {
+    public int lowerEndpoint() {
         return lowerEndpoint;
     }
 
-    int upperEndpoint() {
+    public int upperEndpoint() {
         return upperEndpoint;
     }
 }

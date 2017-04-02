@@ -1,4 +1,7 @@
-package de.lsoft.partition;
+package de.lsoft.partition.collection;
+
+import de.lsoft.partition.Partitioning;
+import de.lsoft.partition.Range;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,7 +21,7 @@ public class CollectionPartitioning<T> extends Partitioning<List<T>> {
     }
 
     @Override
-    protected List<T> invoke(List<T> objects, Range range) {
+    public List<T> invoke(List<T> objects, Range range) {
         List<T> partitionedObjects = new ArrayList<>();
         if (range != null) {
             for (int i = range.lowerEndpoint() - 1; i < range.upperEndpoint(); i++) {

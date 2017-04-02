@@ -21,17 +21,17 @@ public class PartitionTest {
         assertThat(partition.getTotalParts(), is(2));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void Partition_greater_part() {
         new Partition(2, 1);
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void Partition_negativ_part() {
         new Partition(-1, 1);
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void Partition_0_part() {
         new Partition(0, 2);
     }

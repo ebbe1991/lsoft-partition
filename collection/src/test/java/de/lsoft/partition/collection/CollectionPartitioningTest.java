@@ -1,12 +1,18 @@
-package de.lsoft.partition;
+package de.lsoft.partition.collection;
 
+import de.lsoft.partition.Partition;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.empty;
 
 public class CollectionPartitioningTest {
 
@@ -123,12 +129,12 @@ public class CollectionPartitioningTest {
                 .withPartitions(new Partition(3, 3))
                 .invoke();
 
-        assertThat(result.get(1), empty());
-        assertThat(result.get(2), empty());
-        assertThat(result.get(3), empty());
+        assertThat(result.get(1), Matchers.empty());
+        assertThat(result.get(2), Matchers.empty());
+        assertThat(result.get(3), Matchers.empty());
     }
 
-    @Test (expected = IllegalStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void Multiple_Partitions_with_Single_Invoke() throws Exception {
         List<String> animals = new ArrayList<>();
         animals.add("Mouse");
@@ -143,7 +149,7 @@ public class CollectionPartitioningTest {
                 .invokeSinglePartition();
     }
 
-    @Test (expected = IllegalStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void No_Partitions() throws Exception {
         List<String> animals = new ArrayList<>();
         animals.add("Mouse");
@@ -155,7 +161,7 @@ public class CollectionPartitioningTest {
                 .invoke();
     }
 
-    @Test (expected = IllegalStateException.class)
+    @Test(expected = IllegalStateException.class)
     public void Multiple_Partitions_with_different_total_parts() throws Exception {
         List<String> animals = new ArrayList<>();
         animals.add("Mouse");

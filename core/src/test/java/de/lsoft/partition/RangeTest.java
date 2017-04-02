@@ -21,7 +21,7 @@ public class RangeTest {
         assertThat(range.upperEndpoint(), is(1));
     }
 
-    @Test (expected = IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void lower_endpoint_greater() {
         new Range(2, 1);
     }

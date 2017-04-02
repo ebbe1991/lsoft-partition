@@ -81,7 +81,7 @@ public abstract class Partitioning<T> {
      *
      * @return partitioned objects
      */
-    protected abstract T invoke(T objects, Range range);
+    public abstract T invoke(T objects, Range range);
 
     /**
      * @return count of objects
