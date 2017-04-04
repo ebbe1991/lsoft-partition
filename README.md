@@ -1,4 +1,14 @@
 # Partition
+
+## Partition-Collection
+
+Use Maven-Dependency:
+
+      <dependency>
+            <groupId>de.lsoft.partition</groupId>
+            <artifactId>collection</artifactId>
+      </dependency>
+
 The Partition-Project is a Java-Project to easy partitioning objects.
 First of all you have objects to be partitioned, for example a list:
 
