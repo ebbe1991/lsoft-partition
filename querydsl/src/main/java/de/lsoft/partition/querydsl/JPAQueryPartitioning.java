@@ -6,10 +6,7 @@ import com.querydsl.jpa.impl.JPAQuery;
 import de.lsoft.partition.Partitioning;
 import de.lsoft.partition.Range;
 
-import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * JPA-Query Partitioning: Partitioning via Limit and Offset in JPAQuery
@@ -27,8 +24,7 @@ public class JPAQueryPartitioning<T> extends Partitioning<JPAQuery<T>> {
             Integer objectCount = range.upperEndpoint() - offset;
             QueryModifiers queryModifiers = new QueryModifiers(objectCount.longValue(), offset.longValue());
             return query.restrict(queryModifiers);
-        }
-        else {
+        } else {
             return null;
         }
     }
@@ -46,7 +42,11 @@ public class JPAQueryPartitioning<T> extends Partitioning<JPAQuery<T>> {
     /**
      * Creates a new JPAQueryPartitioning.
      */
-    public static <T> JPAQueryPartitioning forQuery(JPAQuery<T> query) {
+    public static <T> JPAQueryPartitioning<T> forQuery(JPAQuery<T> query) {
+        return new JPAQueryPartitioning<T>(query);
+    }
+
+    public static <T> JPAQueryPartitioning<T> getStringJPAQueryPartitioning(JPAQuery<T> query) {
         return new JPAQueryPartitioning<>(query);
     }
 }
